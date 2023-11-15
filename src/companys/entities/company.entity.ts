@@ -4,7 +4,9 @@ import { Service } from 'src/services/entities/service.entity';
 
 @Entity()
 
-export class Company { @PrimaryGeneratedColumn()
+export class Company {
+    
+    @PrimaryGeneratedColumn()
     id: number;
   
     @Column()

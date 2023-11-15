@@ -10,7 +10,6 @@ export class GalerysController {
   @Post()
   create(@Body() createGaleryDto: CreateGaleryDto) {
     return this.galerysService.create(createGaleryDto);
-
   }
 
   @Get()
@@ -30,6 +29,6 @@ export class GalerysController {
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.galerysService.remove(+id);
+    return this.galerysService.remove(id);
   }
 }
