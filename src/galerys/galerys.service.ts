@@ -10,23 +10,23 @@ export class GalerysService {
   constructor(
     @InjectRepository(Galery)
     private GaleryRepository: Repository<Galery>,
-  ) {}
-  
-  
- async create(createGaleryDto: CreateGaleryDto) {
-  const company = await this.CompanyRepository.findOneBy({id: createGaleryDto.company_id});
-  if (!company){
+  ) { }
 
-    throw new BadRequestException('company not found');
+
+  async create(createGaleryDto: CreateGaleryDto) {
+    const company = await this.GaleryRepository.findOneBy({ id: createGaleryDto.id });
+    if (!company) {
+
+      throw new BadRequestException('company not found');
+    }
+
+    const galery = this.GaleryRepository.create({
+      ...createGaleryDto,
+      company
+    });
+    return await this.GaleryRepository.save(galery);
   }
 
-  const product = this.GaleryRepository.create({
-  ...createGaleryDto,
-  company
-  });
-  return await this.GaleryRepository.save(galery);
- }
-  
 
   async findAll() {
     return await this.GaleryRepository.find();
@@ -47,8 +47,8 @@ export class GalerysService {
       throw new BadRequestException(' Product not found');
     }
     let company;
-    if (updateGaleryDto.company_id) {
-      company = await this.CompanyRepository.findOneBy({ id: updateGaleryDto.company_id });
+    if (updateGaleryDto.id) {
+      company = await this.GaleryRepository.findOneBy({ id: updateGaleryDto.id });
       if (!company) {
         throw new BadRequestException('company not found');
       }
@@ -61,7 +61,7 @@ export class GalerysService {
   }
 
   async remove(id: number) {
-    const existingGalery = await this.GaleryRepository.findOne({where:{id}});
+    const existingGalery = await this.GaleryRepository.findOne({ where: { id } });
     if (!existingGalery) {
       throw new BadRequestException('Galery not found');
     }
