@@ -19,13 +19,13 @@ export class GalerysService {
   
   
  async create(createGaleryDto: CreateGaleryDto) {
-  const company = await this.CompanyRepository.findOneBy({id: createGaleryDto.company_id});
+  const company = await this.CompanyRepository.findOneBy({id: createGaleryDto.id});
   if (!company){
 
     throw new BadRequestException('company not found');
   }
 
-  const product = this.GaleryRepository.create({
+  const galery = this.GaleryRepository.create({
   ...createGaleryDto,
   company
   });
@@ -48,8 +48,8 @@ export class GalerysService {
       throw new BadRequestException(' Product not found');
     }
     let company;
-    if (updateGaleryDto.company_id) {
-      company = await this.CompanyRepository.findOneBy({ id: updateGaleryDto.company_id });
+    if (updateGaleryDto.id) {
+      company = await this.CompanyRepository.findOneBy({ id: updateGaleryDto.id });
       if (!company) {
         throw new BadRequestException('company not found');
       }
@@ -69,5 +69,4 @@ export class GalerysService {
     await this.GaleryRepository.delete(id);
     return `galery #${id} deleted successfully`;
   }
-
 }
