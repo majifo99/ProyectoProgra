@@ -10,6 +10,7 @@ export class GalerysController {
   @Post()
   create(@Body() createGaleryDto: CreateGaleryDto) {
     return this.galerysService.create(createGaleryDto);
+
   }
 
   @Get()
