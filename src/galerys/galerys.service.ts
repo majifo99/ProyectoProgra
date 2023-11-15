@@ -45,7 +45,7 @@ export class GalerysService {
     const galery = await this.GaleryRepository.findOneBy({ id });
     if (!galery) {
 
-      throw new BadRequestException(' Product not found');
+      throw new BadRequestException(' Galery not found');
     }
     let company;
     if (updateGaleryDto.id) {
