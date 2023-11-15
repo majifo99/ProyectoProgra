@@ -1,12 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGaleryDto } from './dto/create-galery.dto';
 import { UpdateGaleryDto } from './dto/update-galery.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Company } from 'src/companys/entities/company.entity';
+import { Galery } from './entities/galery.entity';
+import { Repository } from 'typeorm';
+
 
 @Injectable()
 export class GalerysService {
-  create(createGaleryDto: CreateGaleryDto) {
-    return 'This action adds a new galery';
-  }
+  constructor( @InjectRepository(Galery)
+  private GaleryRepository: Repository<Galery>,
+  @InjectRepository(Company)
+  private CompanyRepository: Repository<Company>
+  
+  ) {}
+  
+  
+ async 
 
   findAll() {
     return `This action returns all galerys`;

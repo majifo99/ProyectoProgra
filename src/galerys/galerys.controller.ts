@@ -18,17 +18,17 @@ export class GalerysController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.galerysService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.galerysService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGaleryDto: UpdateGaleryDto) {
-    return this.galerysService.update(+id, updateGaleryDto);
+  update(@Param('id') id: number, @Body() updateGaleryDto: UpdateGaleryDto) {
+    return this.galerysService.update(id, updateGaleryDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.galerysService.remove(+id);
   }
 }
