@@ -11,6 +11,6 @@ import { CompanyModule } from 'src/companys/companys.module';
   imports: [TypeOrmModule.forFeature([Galery]),CompanyModule],
   controllers: [GalerysController],
   providers: [GalerysService,CompanyModule],
-  exports: []
+  exports: [] 
 })
 export class GalerysModule {}
