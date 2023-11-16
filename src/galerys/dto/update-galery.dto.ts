@@ -11,10 +11,6 @@ export class UpdateGaleryDto extends PartialType(CreateGaleryDto) {
 
     @IsOptional()
     @IsString()
-    Description: string;
-
-    @IsOptional()
-    @IsString()
     url: string;
 
 
