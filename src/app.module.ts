@@ -20,7 +20,7 @@ import { Service } from './services/entities/service.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password:'admin',
+      password:'admin123',
       database:'project',
       entities: [Company,Service,Galery],
       autoLoadEntities: true,
