@@ -18,7 +18,7 @@ export class CompanyService {
 async getCompayWithChildre(id: number){
 return this.companyRepository.createQueryBuilder('company') 
 .where('company.id =: companyId',{'companyId' : id})
-.leftJoin('company.gallery','galerys') 
+.leftJoin('company.galerys','galerys') 
 .leftJoin('company.services','services') 
 .getOne()
 }
@@ -34,10 +34,9 @@ async create(createCompanyDto: CreateCompanyDto){
     return this.companyRepository.find();
   }
 
- async findOne(id: number) {
-    return await this.companyRepository.findOne({where: {id},relations:['galerys', 'services']});
+  async findOne(id: number): Promise<Company> {
+    return this.companyRepository.findOne({ where: { id }, relations: ['galerys', 'services'] });
   }
-
  
 
   async update(id: number, updateCompanyDto: UpdateCompanyDto) {

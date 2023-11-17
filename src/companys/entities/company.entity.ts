@@ -16,7 +16,7 @@ export class Company {
     description: string;
   
     @OneToMany(() => Galery, galery => galery.company)
-    products: Galery[];
+    galerys: Galery[];
   
     @OneToMany(() => Service, service => service.company)
     services: Service[];
