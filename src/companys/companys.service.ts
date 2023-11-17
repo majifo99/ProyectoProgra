@@ -15,13 +15,13 @@ export class CompanyService {
     private readonly companyRepository: Repository<Company>,
   ) {}
 
-async getCompayWithChildre(id: number){
-return this.companyRepository.createQueryBuilder('company') 
-.where('company.id =: companyId',{'companyId' : id})
-.leftJoin('company.galerys','galerys') 
-.leftJoin('company.services','services') 
-.getOne()
-}
+  async getCompayWithChildre(id: number){
+    return this.companyRepository.createQueryBuilder('company') 
+      .where('company.id = :Id', { 'Id': id })
+      .leftJoinAndSelect('company.galerys', 'galerys')  // Corregido 'gallery' a 'galerys'
+      .leftJoinAndSelect('company.services', 'services') 
+      .getOne();
+  }
 
 async create(createCompanyDto: CreateCompanyDto){
   const company = this.companyRepository.create(createCompanyDto);
